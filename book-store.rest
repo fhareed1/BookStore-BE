@@ -1,0 +1,37 @@
+### Get /
+GET http://localhost:5000
+
+### sign Up /auth/register
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{ 
+  "email": "folorunshofareed0@gmail.com", 
+  "password": "123123123",
+  "role": "USER"
+}
+
+### sign In /auth/login
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{ 
+  "email": "folorunshofareed0@gmail.com", 
+  "password": "123123123",
+}
+
+### Test create book
+POST http://localhost:5000/books
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6IlVTRVIiLCJpYXQiOjE3NDA1OTQ3NjQsImV4cCI6MTc0MDY4MTE2NH0.scf__I8uwm9_UWADgbaY-bEqZ4wVS0cnYcVCZkmqSEk
+
+{
+    "title": "Xenea",
+    "authorBook": "Web3",
+    "price": "5000000",
+    "year": "2025",
+    "image": "https://res.cloudinary.com/fhareed/image/upload/v1740579998/rb4z2m5ewhotflsmtpiq.webp",
+    "description": "This is a test",
+    "authorId": "1",
+    "published": true
+}
