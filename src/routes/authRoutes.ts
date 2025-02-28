@@ -82,7 +82,6 @@ router.post<{}, any, SignupBody>(
     } catch (error) {
       console.log(next(error));
 
-      // Don't expose internal errors to client
       return res.status(500).json({ error: "Internal server error" });
     }
   }

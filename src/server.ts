@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import authRouter from "./routes/authRoutes";
 import bookRouter from "./routes/bookStoreRoutes";
+import paymentRouter from "./routes/paymentRoutes";
 import authMiddleware from "./middleware/authMiddleware";
 import dotenv from "dotenv";
 
@@ -9,7 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 dotenv.config();
 
-// IMPORTANT: Apply CORS middleware first
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -21,14 +22,15 @@ app.use(
   })
 );
 
-// Then apply the JSON middleware
+
 app.use(express.json());
 
-// Then set up your routes
+
 app.use("/auth", authRouter);
 app.use("/books", authMiddleware, bookRouter);
+app.use("", paymentRouter);
 
-// Add a test route to verify CORS is working
+
 app.get("/test-cors", (req, res) => {
   res.json({ message: "CORS is working!" });
 });

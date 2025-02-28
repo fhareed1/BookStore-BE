@@ -32,7 +32,7 @@ router.post("/", async (req: AuthenticatedRequest, res: Response) => {
         description,
         image,
         authorId: parseInt(req.userId),
-        price: price.toString(), // Ensure price is a string
+        price: price.toString(),
         year: typeof year === "string" ? parseInt(year, 10) : year,
       },
     });
@@ -41,7 +41,7 @@ router.post("/", async (req: AuthenticatedRequest, res: Response) => {
     res.json(book);
   } catch (error) {
     console.error("Error creating book:", error);
-    // Improved error handling
+
     const errorMessage =
       error instanceof Error ? error.message : "Unknown error occurred";
     res.status(500).json({ error: errorMessage });
@@ -82,12 +82,12 @@ router.put("/:id", async (req: AuthenticatedRequest, res: Response) => {
         title,
         description,
         image,
-        price: price.toString(), // Ensure price is a string
+        price: price.toString(),
       },
     });
-    res.json(book)
+    res.json(book);
   } catch (error) {
-    res.status(500).json({ message: "Editing book Failed" })
+    res.status(500).json({ message: "Editing book Failed" });
   }
 });
 
@@ -109,7 +109,6 @@ router.delete("/:id", async (req: AuthenticatedRequest, res: Response) => {
       return res.status(404).json({ error: "Book not found" });
     }
 
-    // Check if the logged-in user is the author
     if (book.authorId !== parseInt(req.userId)) {
       return res
         .status(403)
